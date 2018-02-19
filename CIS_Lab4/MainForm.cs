@@ -46,14 +46,10 @@ namespace CIS_Lab4
                 cnn.Close();
             }
 
-        public void ConnectionUpdate()
+        private void ConnectionUpdate()
         {
-            strconn = string.Format("Server={0};Port={1};UserID={2};Password={3};Database={4}",
-                serverTextBox.Text,
-                portTextBox.Text,
-                userTextBox.Text,
-                passwordTextBox.Text,
-                baseTextBox.Text);
+            this.strconn =
+                $"Server={this.serverTextBox.Text};Port={this.portTextBox.Text};UserID={this.userTextBox.Text};Password={this.passwordTextBox.Text};Database={this.baseTextBox.Text}";
         }
 
         private void запросБезПараметраToolStripMenuItem_Click(object sender, EventArgs e)
