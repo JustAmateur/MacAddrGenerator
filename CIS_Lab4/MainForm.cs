@@ -13,11 +13,20 @@ namespace CIS_Lab4
         public MainForm()
         {
             InitializeComponent();
+
+            this.serverTextBox.TextChanged += this.TextBoxOnTextChanged;
+            this.portTextBox.TextChanged += this.TextBoxOnTextChanged;
+            this.userTextBox.TextChanged += this.TextBoxOnTextChanged;
+            this.passwordTextBox.TextChanged += this.TextBoxOnTextChanged;
+            this.baseTextBox.TextChanged += this.TextBoxOnTextChanged;
+
+            this.ConnectionUpdate();
         }
+
+        private void TextBoxOnTextChanged(object sender, EventArgs eventArgs) => this.ConnectionUpdate();
 
         private void запросСПараметромToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ConnectionUpdate();
             cnn.ConnectionString = strconn;
                 cnn.Open();
                 string stsql = "";
@@ -47,7 +56,6 @@ namespace CIS_Lab4
 
         private void запросБезПараметраToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ConnectionUpdate();
             cnn.ConnectionString = strconn;
             cnn.Open();
             string stsql = "";
@@ -71,7 +79,6 @@ namespace CIS_Lab4
 
         private void скалярнаяФункцияСПараметромToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ConnectionUpdate();
             cnn.ConnectionString = strconn;
             cnn.Open();
             try
@@ -106,7 +113,6 @@ namespace CIS_Lab4
 
         private void генерацияMacадресовToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ConnectionUpdate();
             cnn.ConnectionString = strconn;
             cnn.Open();
             try
