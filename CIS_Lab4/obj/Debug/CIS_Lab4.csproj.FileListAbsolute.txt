@@ -1,0 +1,14 @@
+\\Mac\Home\Documents\Projects\CIS_Lab4\CIS_Lab4\bin\Debug\CIS_Lab4.exe.config
+\\Mac\Home\Documents\Projects\CIS_Lab4\CIS_Lab4\bin\Debug\CIS_Lab4.exe
+\\Mac\Home\Documents\Projects\CIS_Lab4\CIS_Lab4\bin\Debug\CIS_Lab4.pdb
+\\Mac\Home\Documents\Projects\CIS_Lab4\CIS_Lab4\bin\Debug\Npgsql.dll
+\\Mac\Home\Documents\Projects\CIS_Lab4\CIS_Lab4\bin\Debug\System.Threading.Tasks.Extensions.dll
+\\Mac\Home\Documents\Projects\CIS_Lab4\CIS_Lab4\bin\Debug\Npgsql.xml
+\\Mac\Home\Documents\Projects\CIS_Lab4\CIS_Lab4\bin\Debug\System.Threading.Tasks.Extensions.xml
+\\Mac\Home\Documents\Projects\CIS_Lab4\CIS_Lab4\obj\Debug\CIS_Lab4.csprojResolveAssemblyReference.cache
+\\Mac\Home\Documents\Projects\CIS_Lab4\CIS_Lab4\obj\Debug\CIS_Lab4.Form1.resources
+\\Mac\Home\Documents\Projects\CIS_Lab4\CIS_Lab4\obj\Debug\CIS_Lab4.Properties.Resources.resources
+\\Mac\Home\Documents\Projects\CIS_Lab4\CIS_Lab4\obj\Debug\CIS_Lab4.csproj.GenerateResource.Cache
+\\Mac\Home\Documents\Projects\CIS_Lab4\CIS_Lab4\obj\Debug\CIS_Lab4.csproj.CoreCompileInputs.cache
+\\Mac\Home\Documents\Projects\CIS_Lab4\CIS_Lab4\obj\Debug\CIS_Lab4.exe
+\\Mac\Home\Documents\Projects\CIS_Lab4\CIS_Lab4\obj\Debug\CIS_Lab4.pdb
