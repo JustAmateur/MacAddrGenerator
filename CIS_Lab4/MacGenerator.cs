@@ -2,14 +2,12 @@
 using System.Net.NetworkInformation;
 using System.Text;
 
-namespace CIS_Lab4
-{
+namespace CIS_Lab4 {
     /// <summary>
     /// Mac address generator.
     /// <remarks>This object is static.</remarks>
     /// </summary>
-    static class MacGenerator
-    {
+    static class MacGenerator {
         private static readonly Random Random = new Random();
 
         /// <summary>
@@ -27,13 +25,11 @@ namespace CIS_Lab4
         /// </summary>
         /// <returns>Returns <see cref="PhysicalAddress"/> object with generated value.></returns>
         public static PhysicalAddress GenerateAddress() {
-            
             var stringAddress = GenerateGlobalOctet();
             int addressOctet;
 
             // Generating last 5 octets excepting first
-            for (var i = 0; i < 5; i++)
-            {
+            for (var i = 0; i < 5; i++) {
                 addressOctet = Random.Next(UpperOctetTreshold);
                 stringAddress += $"-{addressOctet:X2}";
             }
@@ -46,8 +42,7 @@ namespace CIS_Lab4
         /// </summary>
         /// <param name="mask">Mac address mask for generating target.</param>
         /// <returns>Returns <see cref="string"/> value with mask for mac address with first generated octet.</returns>
-        public static string GenerateFirstOctetInMask(string mask)
-        {
+        public static string GenerateFirstOctetInMask(string mask) {
             var finalResult = new StringBuilder(mask);
             finalResult.Remove(0, 2);
             finalResult.Insert(0, GenerateGlobalOctet());
@@ -59,8 +54,7 @@ namespace CIS_Lab4
         /// Generates single octet for global mask.
         /// </summary>
         /// <returns>Returns <see cref="string"/> value with global octet.</returns>
-        private static string GenerateGlobalOctet()
-        {
+        private static string GenerateGlobalOctet() {
             // Setting address octet range.
             var addressOctet = Random.Next(LowerOctetTreshold, UpperOctetTreshold);
 
@@ -68,12 +62,12 @@ namespace CIS_Lab4
              * Here we taking string representation,
              * converting octet to binary and setting it to global.
              */
-            var stringOctet = Convert.ToString(addressOctet, toBase:2);
-            stringOctet = stringOctet.Remove(stringOctet.Length-2, 2);
+            var stringOctet = Convert.ToString(addressOctet, toBase: 2);
+            stringOctet = stringOctet.Remove(stringOctet.Length - 2, 2);
             stringOctet = stringOctet.Insert(stringOctet.Length, "00");
 
             // Convreting string octet value to Int32
-            addressOctet = Convert.ToInt32(stringOctet, fromBase:2);
+            addressOctet = Convert.ToInt32(stringOctet, fromBase: 2);
 
             // Filling address string
             var stringAddress = string.Empty;
