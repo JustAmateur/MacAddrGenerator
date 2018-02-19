@@ -34,18 +34,17 @@ namespace CIS_Lab4
 
         public static string GenerateFirstOctet(string mask)
         {
-            int octet;
-            string stringOctet;
-            var finalResult = new StringBuilder(mask);
+            var addressOctet = Random.Next(LowerOctetTreshold, UpperOctetTreshold);
 
-            octet = Random.Next(8, 256);
-            stringOctet = Convert.ToString(octet, 2);
+            var stringOctet = Convert.ToString(addressOctet, toBase:2);
             stringOctet = stringOctet.Remove(stringOctet.Length - 2, 2);
-            stringOctet.Insert(stringOctet.Length, "00");
-            octet = Convert.ToInt32(stringOctet, 2);
+            stringOctet = stringOctet.Insert(stringOctet.Length, "00");
 
+            addressOctet = Convert.ToInt32(stringOctet, fromBase:2);
+
+            var finalResult = new StringBuilder(mask);
             finalResult.Remove(0, 2);
-            finalResult.Insert(0, octet.ToString("X2"));
+            finalResult.Insert(0, addressOctet.ToString("X2"));
 
             return finalResult.ToString();
         }
