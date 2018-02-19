@@ -125,14 +125,14 @@ namespace CIS_Lab4
                 var temp = new NpgsqlCommand {
                     Connection = cnn,
                     CommandText = 
-                        $@"INSERT INTO mac_address(value) SELECT * FROM generate_random_mac('{MacGenerator.GenerateFirstOctet(maskTextBox.Text).ToLower()}',{Convert.ToInt32(commandTextBox.Text)}) AS (a macaddr);"
+                        $@"INSERT INTO mac_address(value) SELECT * FROM generate_random_mac('{MacGenerator.GenerateFirstOctetInMask(maskTextBox.Text).ToLower()}',{Convert.ToInt32(commandTextBox.Text)}) AS (a macaddr);"
                     
                 };
                 var myCommand = new NpgsqlCommand();
                 myCommand.Connection = cnn;
                 myCommand.CommandText =
                     "INSERT INTO mac_address(value) SELECT * FROM generate_random_mac(\'" +
-                    MacGenerator.GenerateFirstOctet(maskTextBox.Text).ToLower() + "\'," +
+                    MacGenerator.GenerateFirstOctetInMask(maskTextBox.Text).ToLower() + "\'," +
                     Convert.ToInt32(commandTextBox.Text) + ") AS (a macaddr);";
                 myCommand.ExecuteNonQuery();
                 
