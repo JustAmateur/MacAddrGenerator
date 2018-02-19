@@ -139,9 +139,9 @@ namespace CIS_Lab4
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw;
+                //throw;
                 MessageBox.Show("Возникла ошибка соединения, либо не указано количество mac-адресов",
                     "Ошибка",
                     MessageBoxButtons.OK,
