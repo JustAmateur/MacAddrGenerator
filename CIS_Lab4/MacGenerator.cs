@@ -26,11 +26,10 @@ namespace CIS_Lab4 {
         /// <returns>Returns <see cref="PhysicalAddress"/> object with generated value.></returns>
         public static PhysicalAddress GenerateAddress() {
             var stringAddress = GenerateGlobalOctet();
-            int addressOctet;
 
             // Generating last 5 octets excepting first
             for (var i = 0; i < 5; i++) {
-                addressOctet = Random.Next(UpperOctetTreshold);
+                var addressOctet = Random.Next(UpperOctetTreshold);
                 stringAddress += $"-{addressOctet:X2}";
             }
 
