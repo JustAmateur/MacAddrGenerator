@@ -28,7 +28,7 @@ namespace CIS_Lab4
         /// <returns>Returns <see cref="PhysicalAddress"/> object with generated value.></returns>
         public static PhysicalAddress GenerateAddress() {
             
-            var stringAddress = GenerateOctet();
+            var stringAddress = GenerateGlobalOctet();
             int addressOctet;
 
             // Generating last 5 octets excepting first
@@ -50,12 +50,12 @@ namespace CIS_Lab4
         {
             var finalResult = new StringBuilder(mask);
             finalResult.Remove(0, 2);
-            finalResult.Insert(0, GenerateOctet());
+            finalResult.Insert(0, GenerateGlobalOctet());
 
             return finalResult.ToString();
         }
 
-        static string GenerateOctet()
+        static string GenerateGlobalOctet()
         {
             // Setting address octet range.
             var addressOctet = Random.Next(LowerOctetTreshold, UpperOctetTreshold);
