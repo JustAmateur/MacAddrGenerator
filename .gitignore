@@ -1,0 +1,5 @@
+*.obj
+.vs/
+CIS_Lab4/bin
+CIS_Lab4/obj
+packages/
