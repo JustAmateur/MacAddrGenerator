@@ -8,29 +8,29 @@ namespace CIS_Lab4
     {
         private static readonly Random Random = new Random();
 
-        public static PhysicalAddress GenerateAddress()
-        {
-            int octet;
-            string stringOctet;
-            PhysicalAddress address;
-            string stringAddress = "";
+        public static PhysicalAddress GenerateAddress() {
 
-            octet = Random.Next(8,256);
-            stringOctet = Convert.ToString(octet, 2);
+            const int lowerOctetTreshold = 8;
+            const int upperOctetTreshold = 256;
+
+            var addressOctet = Random.Next(lowerOctetTreshold, upperOctetTreshold);
+
+            var stringOctet = Convert.ToString(addressOctet, toBase:2);
             stringOctet = stringOctet.Remove(stringOctet.Length-2, 2);
-            stringOctet.Insert(stringOctet.Length, "00");
-            octet = Convert.ToInt32(stringOctet,2);
-            stringAddress += octet.ToString("X2");
+            stringOctet = stringOctet.Insert(stringOctet.Length, "00");
 
-            for (int i = 0; i < 5; i++)
+            addressOctet = Convert.ToInt32(stringOctet, fromBase:2);
+
+            var stringAddress = string.Empty;
+            stringAddress += addressOctet.ToString("X2");
+
+            for (var i = 0; i < 5; i++)
             {
-                octet = Random.Next(256);
-                stringAddress += "-" + octet.ToString("X2");
+                addressOctet = Random.Next(upperOctetTreshold);
+                stringAddress += $"-{addressOctet:X2}";
             }
 
-            address = PhysicalAddress.Parse(stringAddress);
-            //MessageBox.Show(stringAddress);
-            return address;
+            return PhysicalAddress.Parse(stringAddress);
         }
 
         public static string GenerateFirstOctet(string mask)
