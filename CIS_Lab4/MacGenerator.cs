@@ -4,7 +4,7 @@ using System.Text;
 
 namespace CIS_Lab4
 {
-    class MacGenerator
+    static class MacGenerator
     {
         public static Random rnd = new Random();
         public static PhysicalAddress GenerateAddress()
