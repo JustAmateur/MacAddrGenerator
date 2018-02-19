@@ -7,7 +7,7 @@ namespace CIS_Lab4
 {
     public partial class MainForm : Form
     {
-        public string strconn;
+        private string _connectionString;
         public NpgsqlConnection cnn = new NpgsqlConnection();
 
         public MainForm()
@@ -27,36 +27,38 @@ namespace CIS_Lab4
 
         private void запросСПараметромToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            cnn.ConnectionString = strconn;
-                cnn.Open();
-                string stsql = "";
-                using (NpgsqlCommand myCommand = new NpgsqlCommand("select * from \"Жанры\" where \"Имя\" like :value1", cnn))
+            this.InvokeGatedConnectionCommand(delegate(NpgsqlConnection connection) {
+                using (var command = new NpgsqlCommand(@"select * from ""Жанры"" where ""Имя"" like :value1", connection))
                 {
-                    myCommand.Parameters.Add(new NpgsqlParameter("value1",
-                        NpgsqlTypes.NpgsqlDbType.Varchar));
-                    stsql = "%" + commandTextBox.Text + "%";
-                    myCommand.Parameters[0].Value = stsql;
-                    using (NpgsqlDataReader dr = myCommand.ExecuteReader())
+                    command.Parameters.Add(new NpgsqlParameter("value1", NpgsqlTypes.NpgsqlDbType.Varchar));
+                    var stsql = $"%{this.commandTextBox.Text}%";
+                    command.Parameters[0].Value = stsql;
+                    using (var dr = command.ExecuteReader())
                     {
-                        commandListBox.Items.Clear();
+                        this.commandListBox.Items.Clear();
                         while (dr.Read())
-                        {
-                            commandListBox.Items.Add(Convert.ToString(dr[1]));
-                        }
+                            this.commandListBox.Items.Add(Convert.ToString(dr[1]));
                     }
                 }
-                cnn.Close();
+            });
+        }
+
+        private void InvokeGatedConnectionCommand(Action<NpgsqlConnection> func) {
+            using (var connection = new NpgsqlConnection(this._connectionString)) {
+                connection.Open();
+                func(connection);
             }
+        }
 
         private void ConnectionUpdate()
         {
-            this.strconn =
+            this._connectionString =
                 $"Server={this.serverTextBox.Text};Port={this.portTextBox.Text};UserID={this.userTextBox.Text};Password={this.passwordTextBox.Text};Database={this.baseTextBox.Text}";
         }
 
         private void запросБезПараметраToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            cnn.ConnectionString = strconn;
+            cnn.ConnectionString = this._connectionString;
             cnn.Open();
             string stsql = "";
             stsql = "select * from \"Жанры\" where \"Имя\" like \'%" +
@@ -79,7 +81,7 @@ namespace CIS_Lab4
 
         private void скалярнаяФункцияСПараметромToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            cnn.ConnectionString = strconn;
+            cnn.ConnectionString = this._connectionString;
             cnn.Open();
             try
             {
@@ -113,7 +115,7 @@ namespace CIS_Lab4
 
         private void генерацияMacадресовToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            cnn.ConnectionString = strconn;
+            cnn.ConnectionString = this._connectionString;
             cnn.Open();
             try
             {
