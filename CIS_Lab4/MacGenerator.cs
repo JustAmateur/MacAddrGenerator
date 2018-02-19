@@ -6,7 +6,8 @@ namespace CIS_Lab4
 {
     static class MacGenerator
     {
-        public static Random rnd = new Random();
+        private static readonly Random Random = new Random();
+
         public static PhysicalAddress GenerateAddress()
         {
             int octet;
@@ -14,7 +15,7 @@ namespace CIS_Lab4
             PhysicalAddress address;
             string stringAddress = "";
 
-            octet = rnd.Next(8,256);
+            octet = Random.Next(8,256);
             stringOctet = Convert.ToString(octet, 2);
             stringOctet = stringOctet.Remove(stringOctet.Length-2, 2);
             stringOctet.Insert(stringOctet.Length, "00");
@@ -23,7 +24,7 @@ namespace CIS_Lab4
 
             for (int i = 0; i < 5; i++)
             {
-                octet = rnd.Next(256);
+                octet = Random.Next(256);
                 stringAddress += "-" + octet.ToString("X2");
             }
 
@@ -38,7 +39,7 @@ namespace CIS_Lab4
             string stringOctet;
             var finalResult = new StringBuilder(mask);
 
-            octet = rnd.Next(8, 256);
+            octet = Random.Next(8, 256);
             stringOctet = Convert.ToString(octet, 2);
             stringOctet = stringOctet.Remove(stringOctet.Length - 2, 2);
             stringOctet.Insert(stringOctet.Length, "00");
