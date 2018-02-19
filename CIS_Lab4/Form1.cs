@@ -122,23 +122,20 @@ namespace CIS_Lab4
             cnn.Open();
             try
             {
-                NpgsqlCommand myCommand = new NpgsqlCommand();
+                var temp = new NpgsqlCommand {
+                    Connection = cnn,
+                    CommandText = 
+                        $@"INSERT INTO mac_address(value) SELECT * FROM generate_random_mac('{MacGenerator.GenerateFirstOctet(maskTextBox.Text).ToLower()}',{Convert.ToInt32(commandTextBox.Text)}) AS (a macaddr);"
+                    
+                };
+                var myCommand = new NpgsqlCommand();
                 myCommand.Connection = cnn;
                 myCommand.CommandText =
                     "INSERT INTO mac_address(value) SELECT * FROM generate_random_mac(\'" +
                     MacGenerator.GenerateFirstOctet(maskTextBox.Text).ToLower() + "\'," +
                     Convert.ToInt32(commandTextBox.Text) + ") AS (a macaddr);";
-                //NpgsqlParameter parameter = new NpgsqlParameter();
-                //parameter.ParameterName = "address";
-                //myCommand.CommandText =
-                //"INSERT INTO mac_address(value) VALUES (@address)";
-                //myCommand.Parameters.Add(parameter);
-                //for (int i = 0; i < Convert.ToInt32(commandTextBox.Text); i++)
-                //{
-
-                //myCommand.Parameters[0].Value = MacGenerator.GenerateAddress();
                 myCommand.ExecuteNonQuery();
-                //}
+                
 
                 MessageBox.Show("Генерация выполнена успешно!",
                     "Успех",
