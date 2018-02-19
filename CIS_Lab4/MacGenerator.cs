@@ -4,13 +4,28 @@ using System.Text;
 
 namespace CIS_Lab4
 {
+    /// <summary>
+    /// Mac address generator.
+    /// <remarks>This object is static.</remarks>
+    /// </summary>
     static class MacGenerator
     {
         private static readonly Random Random = new Random();
 
+        /// <summary>
+        /// Represents <see cref="Int32"/> value with lower random generator treshold.
+        /// </summary>
         private const int LowerOctetTreshold = 8;
+
+        /// <summary>
+        /// Represents <see cref="Int32"/> value with upper random generator treshold.
+        /// </summary>
         private const int UpperOctetTreshold = 256;
 
+        /// <summary>
+        /// Generates full random mac address.
+        /// </summary>
+        /// <returns>Returns <see cref="PhysicalAddress"/> object with generated value.></returns>
         public static PhysicalAddress GenerateAddress() {
             var addressOctet = Random.Next(LowerOctetTreshold, UpperOctetTreshold);
 
@@ -32,6 +47,11 @@ namespace CIS_Lab4
             return PhysicalAddress.Parse(stringAddress);
         }
 
+        /// <summary>
+        /// Generates first octet of mac address represented by string value.
+        /// </summary>
+        /// <param name="mask">Mac address mask for generating target.</param>
+        /// <returns>Returns <see cref="string"/> value with mask for mac address with first generated octet.</returns>
         public static string GenerateFirstOctet(string mask)
         {
             var addressOctet = Random.Next(LowerOctetTreshold, UpperOctetTreshold);
