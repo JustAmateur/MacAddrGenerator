@@ -55,7 +55,11 @@ namespace CIS_Lab4
             return finalResult.ToString();
         }
 
-        static string GenerateGlobalOctet()
+        /// <summary>
+        /// Generates single octet for global mask.
+        /// </summary>
+        /// <returns>Returns <see cref="string"/> value with global octet.</returns>
+        private static string GenerateGlobalOctet()
         {
             // Setting address octet range.
             var addressOctet = Random.Next(LowerOctetTreshold, UpperOctetTreshold);
