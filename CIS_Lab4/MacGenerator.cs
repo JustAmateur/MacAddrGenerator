@@ -8,12 +8,11 @@ namespace CIS_Lab4
     {
         private static readonly Random Random = new Random();
 
+        private const int LowerOctetTreshold = 8;
+        private const int UpperOctetTreshold = 256;
+
         public static PhysicalAddress GenerateAddress() {
-
-            const int lowerOctetTreshold = 8;
-            const int upperOctetTreshold = 256;
-
-            var addressOctet = Random.Next(lowerOctetTreshold, upperOctetTreshold);
+            var addressOctet = Random.Next(LowerOctetTreshold, UpperOctetTreshold);
 
             var stringOctet = Convert.ToString(addressOctet, toBase:2);
             stringOctet = stringOctet.Remove(stringOctet.Length-2, 2);
@@ -26,7 +25,7 @@ namespace CIS_Lab4
 
             for (var i = 0; i < 5; i++)
             {
-                addressOctet = Random.Next(upperOctetTreshold);
+                addressOctet = Random.Next(UpperOctetTreshold);
                 stringAddress += $"-{addressOctet:X2}";
             }
 
