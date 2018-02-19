@@ -27,17 +27,25 @@ namespace CIS_Lab4
         /// </summary>
         /// <returns>Returns <see cref="PhysicalAddress"/> object with generated value.></returns>
         public static PhysicalAddress GenerateAddress() {
+            // Setting address octet range.
             var addressOctet = Random.Next(LowerOctetTreshold, UpperOctetTreshold);
 
+            /*
+             * Here we taking string representation,
+             * converting octet to binary and setting it to global.
+             */
             var stringOctet = Convert.ToString(addressOctet, toBase:2);
             stringOctet = stringOctet.Remove(stringOctet.Length-2, 2);
             stringOctet = stringOctet.Insert(stringOctet.Length, "00");
 
+            // Convreting string octet value to Int32
             addressOctet = Convert.ToInt32(stringOctet, fromBase:2);
 
+            // Filling address string
             var stringAddress = string.Empty;
             stringAddress += addressOctet.ToString("X2");
 
+            // Generating last 5 octets excepting first
             for (var i = 0; i < 5; i++)
             {
                 addressOctet = Random.Next(UpperOctetTreshold);
@@ -54,8 +62,13 @@ namespace CIS_Lab4
         /// <returns>Returns <see cref="string"/> value with mask for mac address with first generated octet.</returns>
         public static string GenerateFirstOctet(string mask)
         {
+            // Setting address octet range.
             var addressOctet = Random.Next(LowerOctetTreshold, UpperOctetTreshold);
 
+            /*
+             * Here we taking string representation,
+             * converting octet to binary and setting it to global.
+             */
             var stringOctet = Convert.ToString(addressOctet, toBase:2);
             stringOctet = stringOctet.Remove(stringOctet.Length - 2, 2);
             stringOctet = stringOctet.Insert(stringOctet.Length, "00");
